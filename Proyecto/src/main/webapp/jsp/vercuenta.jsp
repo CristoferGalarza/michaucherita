@@ -16,29 +16,40 @@
     </header>
     <main>
         <section>
-            <h4>Información de la Cuenta</h4>
-            <p><strong>Nombre de la Cuenta:</strong> <!-- Aquí se mostrará el nombre de la cuenta dinámica --></p>
-            <p><strong>Saldo Total:</strong> <!-- Aquí se mostrará el saldo total de la cuenta --></p>
-        </section>
+		    <h4>Información de la Cuenta</h4>
+		    <p><strong>Nombre de la Cuenta:</strong> ${cuenta.nombre}</p> <!-- Muestra el nombre de la cuenta -->
+		    <p><strong>Saldo Total:</strong> ${cuenta.total}</p> <!-- Muestra el total -->
+		</section>
+        
 
         <section>
-            <h4>Movimientos de la Cuenta</h4>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Fecha</th>
-                        <th>Concepto</th>
-                        <th>Cuenta Origen</th>
-                        <th>Cuenta Destino</th>
-                        <th>Categoría</th>
-                        <th>Valor</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Aquí se mostrarán los movimientos dinámicos -->
-                </tbody>
-            </table>
-        </section>
+		    <h4>Movimientos de la Cuenta</h4>
+		    <table>
+		        <thead>
+		            <tr>
+		                <th>Fecha</th>
+		                <th>Concepto</th>
+		                <th>Cuenta Origen</th>
+		                <th>Cuenta Destino</th>
+		                <th>Categoría</th>
+		                <th>Valor</th>
+		            </tr>
+		        </thead>
+		        <tbody>
+		            <c:forEach var="movimiento" items="${movimientos}">
+		                <tr>
+		                    <td>${movimiento.fecha}</td>
+		                    <td>${movimiento.concepto}</td>
+		                    <td>${movimiento.cuentaOrigen}</td>
+		                    <td>${movimiento.cuentaDestino}</td>
+		                    <td>${movimiento.categoria}</td>
+		                    <td>${movimiento.valor}</td>
+		                </tr>
+		            </c:forEach>
+		        </tbody>
+		    </table>
+	</section>
+        
 
        <section>
 		    <h4>Acciones</h4>
