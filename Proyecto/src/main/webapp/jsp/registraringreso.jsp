@@ -17,7 +17,7 @@
     <main>
         <section>
             <h4>Datos del Movimiento</h4>
-            <form>
+            <form method="POST" action="ContabilidadController">
                 <!-- Campo oculto para el ID de la cuenta -->
                 <input type="hidden" id="cuentaId" name="cuentaId" value="<!-- ID de la cuenta seleccionada -->">
                 
@@ -39,8 +39,7 @@
                 <label for="monto">Monto:</label>
                 <input type="number" id="monto" name="monto" placeholder="Ej. 1000" step="0.01" required>
                 
-                <br>
-                <br>
+                <br><br>
                 <button type="submit" class="button">Registrar Ingreso</button>
             </form>
         </section>
