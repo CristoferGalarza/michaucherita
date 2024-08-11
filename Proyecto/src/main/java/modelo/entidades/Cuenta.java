@@ -1,6 +1,7 @@
-package modelo;
+package modelo.entidades;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Cuenta implements Serializable{
@@ -13,14 +14,20 @@ public class Cuenta implements Serializable{
 	private String nombre;
 	private double total;
 	
+	private static List<Cuenta> cuentas = null;//BDD en memoria
+	
 	//Constructores
 	
 	public Cuenta() {
 		
 	}
 	
-	
-	
+	public Cuenta(int id, String nombre, double total) {
+		this.id = id;
+		this.nombre = nombre;
+		this.total = total;
+	}
+
 	//Getter and setter
 	
 	public int getId() {
@@ -49,15 +56,5 @@ public class Cuenta implements Serializable{
 	
 	//Otros métodos / métodos del negocio
 	
-	public static List<Cuenta> getAll(){
-		return null;
-	}
 	
-	public static double actualizarTotal(int cuentaId, double monto) {
-		return 0;//revisar la devolución para total
-	}
-	
-	public static Cuenta getCuenta(int cuentaId) {
-		return null;
-	}
 }
