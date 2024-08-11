@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/ContabilidadController")
+@WebServlet("/ContabilidadController")//Permite que el servidor tomcat reconozca a esta clase como servlet
 public class ContabilidadController extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
