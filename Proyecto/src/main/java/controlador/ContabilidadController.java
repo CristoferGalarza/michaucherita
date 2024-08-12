@@ -1,6 +1,7 @@
 package controlador;
 
 import java.io.IOException;
+import modelo.entidades.Cuenta;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -59,7 +60,6 @@ public class ContabilidadController extends HttpServlet {
 		//2. Hablar con el modelo
 		//3. LLamar a la vista
 		
-		
 	}
 	
 	private void verMovimientos(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -76,12 +76,21 @@ public class ContabilidadController extends HttpServlet {
 	 
 	}
 	
+	
 	private void verCuenta(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//1. Obtener los parámetros
-		//2. Hablar con el modelo
-		//3. LLamar a la vista
-	 
+	    // 1. Obtener los parámetros
+	    int cuentaId = Integer.parseInt(req.getParameter("cuentaId"));
+	    
+	    // 2. Hablar con el modelo 
+	    //Cuenta cuenta = CuentaDAO.getCuenta(cuentaId); // Obtener la cuenta
+	    //List<Movimiento> movimientos = MovimientoDAO.getMovimientosCuenta(cuentaId); //obtener lo movs de la cuenta
+	    
+	    //3. LLamar a la vista
+	    //req.setAttribute("cuenta", cuenta); // Pasar la cuenta a la vista
+	    //req.setAttribute("movimientos", movimientos); // Pasar los movimientos a la vista
+	    //req.getRequestDispatcher("jsp/vercuenta.jsp").forward(req, resp);
 	}
+
 	
 	
 	

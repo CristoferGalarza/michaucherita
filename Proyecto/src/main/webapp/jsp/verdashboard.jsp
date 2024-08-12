@@ -32,10 +32,7 @@
                             <td>${cuenta.nombre}</td>
                             <td>${cuenta.saldoTotal}</td>
                             <td>
-                                <form action="ver_cuenta.jsp" method="get">
-                                    <input type="hidden" name="cuentaId" value="${cuenta.id}">
-                                    <button type="submit">Ver Cuenta</button>
-                                </form>
+                                <a href="ContabilidadController?ruta=verCuenta&cuentaID=${cuenta.id}">Ver Cuenta</a>
                             </td>
                         </tr>
                     </c:forEach>
