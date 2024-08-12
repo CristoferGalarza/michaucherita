@@ -58,7 +58,7 @@ public class ContabilidadController extends HttpServlet {
 		//1. Obtener los parámetros
 		//2. Hablar con el modelo
 		//3. LLamar a la vista
-	 
+		
 		
 	}
 	
