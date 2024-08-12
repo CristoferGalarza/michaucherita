@@ -1,61 +1,66 @@
 package modelo.entidades;
-
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.List;
 
-public class Ingreso implements Serializable{
-	private static final long serialVersionUID = 1L;
-	
-	private String concepto;
-	private Date fecha;
-	private Double monto;
+public class Ingreso implements Serializable {
+    private static final long serialVersionUID = 1L;
 
-	
-	public Ingreso() {
-		
-	}
-	
+    private String concepto;
+    private Date fecha;
+    private Double monto;
+    private Categoria categoria;
 
-	public Ingreso(String concepto, Date fecha, Double monto) {
-		super();
-		this.concepto = concepto;
-		this.fecha = fecha;
-		this.monto = monto;
-	}
+    public Ingreso() {}
 
+    public Ingreso(String concepto, Date fecha, Double monto, Categoria categoria) {
+        this.concepto = concepto;
+        this.fecha = fecha;
+        this.monto = monto;
+        this.categoria = categoria;
+    }
 
-	public String getConcepto() {
-		return concepto;
-	}
+    public String getConcepto() {
+        return concepto;
+    }
 
-	public void setConcepto(String concepto) {
-		this.concepto = concepto;
-	}
+    public void setConcepto(String concepto) {
+        this.concepto = concepto;
+    }
 
-	public Date getFecha() {
-		return fecha;
-	}
+    public Date getFecha() {
+        return fecha;
+    }
 
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
-	}
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
 
-	public Double getMonto() {
-		return monto;
-	}
+    public Double getMonto() {
+        return monto;
+    }
 
-	public void setMonto(Double monto) {
-		this.monto = monto;
-	}
-	
-	/***************METODOS DEL NEGOCIO
-	 * @return *************/
-  
-	public void agregarIngreso(Double monto) {
+    public void setMonto(Double monto) {
+        this.monto = monto;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    /*************** MÉTODOS DEL NEGOCIO ***************/
+
+    /**
+     * Método para agregar un ingreso.
+     * Aquí se podría incluir la lógica específica para el negocio relacionada con el ingreso.
+     * @param monto Monto a agregar.
+     */
+    public void agregarIngreso(Double monto) {
         this.monto += monto;
     }
-	
-	
 }
+
 
