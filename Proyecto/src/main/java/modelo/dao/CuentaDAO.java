@@ -3,34 +3,34 @@ package modelo.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.*;
 import modelo.entidades.Cuenta;
 
 public class CuentaDAO {
-	public static List<Cuenta> getAll(){
-		if(cuentas == null) {
-			cuentas = new ArrayList<Cuenta>();
-			
-			cuentas.add(new Cuenta(1, "Ahorros Pichincha", 150.0));
-			cuentas.add(new Cuenta(2, "Ahorros Pacifico", 70.6));
-		}
-		return cuentas;
+	
+	private EntityManager em=null;
+	
+	//constructor
+	
+	public CuentaDAO() {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistencia");
+		this.em = emf.createEntityManager();
 	}
 	
-	public static double actualizarTotal(int cuentaId, double monto) {
-		for(Cuenta cuenta : getAll()) {
-			if(cuenta.getId() == cuentaId) {
-				total = total + monto;//problema con static
-			}
-		}
-		return total;
+	public List<Cuenta> getAll(){
+		String sentenciaJPQL = "SELECT c FROM Cuenta c ORDER BY c.id ASC";
+		
+		Query query = this.em.createQuery(sentenciaJPQL);
+		List<Cuenta> resultado = query.getResultList();
+		return resultado;
 	}
 	
-	public static Cuenta getCuenta(int cuentaId) {
-		for(Cuenta cuenta : getAll()) {
-			if(cuenta.getId() == cuentaId) {
-				return cuenta;
-			}
-		}
-		return null;
+
+	public double actualizarTotal(int cuentaId, double monto) {
+		
+	}
+	
+	public Cuenta getCuenta(int cuentaId) {
+		
 	}
 }

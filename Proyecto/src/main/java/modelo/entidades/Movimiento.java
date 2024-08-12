@@ -6,6 +6,12 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.annotation.Generated;
+import jakarta.persistence.*;
+
+
+@Entity
+@Table(name = "Movimiento")
 public class Movimiento implements Serializable{
 	//Los movimientos se van aumentar cuando realicemos ingresos
 	
@@ -13,10 +19,20 @@ public class Movimiento implements Serializable{
 	private static final long serialVersionUID = 1L;//Definido de forma local
 	
 	//variables
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
+	@Column(name = "concepto")
 	private String concepto;
+	
+	@Column(name = "fecha")
 	private Date fecha; //Es necesario tener fecha inicio y fecha fin?
+	
+	@Column(name = "valor")
 	private double valor;
+	
+	@Column(name = "hora")
 	private Time hora;
 	
 	private static List<Movimiento> movimientos = null;//BDD en memoria
@@ -81,9 +97,15 @@ public class Movimiento implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	
 	
 	//Otros métodos / métodos del negocio
 	
-	
+	@Override
+	public String toString() {
+		return "Movimiento [id=" + id + ", concepto=" + concepto + ", fecha=" + fecha + ", valor=" + valor + ", hora="
+				+ hora + "]";
+	}
 	
 }
