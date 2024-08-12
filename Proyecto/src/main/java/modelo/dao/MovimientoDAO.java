@@ -12,6 +12,7 @@ import modelo.conexion.BddConnection;
 import modelo.entidades.Movimiento;
 
 public class MovimientoDAO {
+<<<<<<< Updated upstream
 		//devuelve una lista de movimientos
 		public static List<Movimiento> getAllSumarized(Date from, Date to) {
 			String _SQL_GET_ALL_ = "SELECT * FROM MOVIMIENTO";
@@ -31,6 +32,14 @@ public class MovimientoDAO {
 				e.printStackTrace();
 			}
 			/*if (movimientos == null) {
+=======
+	
+	private static List<Movimiento> movimientos = null;
+	//devuelve una lista de movimientos
+		public static List<Movimiento> getAllSumarized(Date from, Date to) {
+			if (movimientos == null) {
+				
+>>>>>>> Stashed changes
 				movimientos = new ArrayList<Movimiento>();
 				
 				movimientos.add(new Movimiento(1, "compra de suministro",

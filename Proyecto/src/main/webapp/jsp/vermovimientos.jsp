@@ -15,9 +15,8 @@
         <h1>Listado de Movimientos</h1>
     </header>
 
-    <main>
+    <main class="ver-movimientos">
         <section>
-            <h4>Movimientos</h4>
             <table>
                 <thead>
                     <tr>
@@ -31,17 +30,25 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Aquí se mostrarán los movimientos del rango de fechas especificado -->
+                    <c:forEach var="movimiento" items="${movimientos}">
+                        <tr>
+                            <td>${movimiento.fecha}</td>
+                            <td>${movimiento.hora}</td>
+                            <td>${movimiento.concepto}</td>
+                            <td>${movimiento.cuentaOrigen}</td>
+                            <td>${movimiento.cuentaDestino}</td>
+                            <td>${movimiento.categoria}</td>
+                            <td>${movimiento.valor}</td>
+                        </tr>
+                    </c:forEach>
                 </tbody>
             </table>
         </section>
         
-        <br>
-        <br>
-
         <section>
             <a href="verdashboard.jsp" class="button">Volver al dashboard</a>
         </section>
+            
     </main>
     
     <footer>
