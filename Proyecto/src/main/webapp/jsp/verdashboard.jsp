@@ -32,25 +32,10 @@
                             <td>${cuenta.nombre}</td>
                             <td>${cuenta.saldoTotal}</td>
                             <td>
-                                <a href="ContabilidadController?ruta=verCuenta&cuentaID=${cuenta.id}">Ver Cuenta</a>
+                                <a href="../ContabilidadController?ruta=verCuenta&cuentaId=${cuenta.id}&inicio=${inicio}&fin=${fin}">Ver Cuenta</a>      
                             </td>
                         </tr>
                     </c:forEach>
-                </tbody>
-            </table>
-        </section>
-
-        <section>
-            <h4>Consolidado de Categorías</h4>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Categoría</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Aquí se mostrarán los datos dinámicos -->
                 </tbody>
             </table>
         </section>
@@ -69,7 +54,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Aquí se mostrarán los datos dinámicos -->
+                    <c:forEach var="movimiento" items="${movimientos}">
+                        <tr>
+                            <td>${movimiento.fecha}</td>
+                            <td>${movimiento.concepto}</td>
+                            <td>${movimiento.cuentaOrigen}</td>
+                            <td>${movimiento.cuentaDestino}</td>
+                            <td>${movimiento.categoria}</td>
+                            <td>${movimiento.valor}</td>
+                        </tr>
+                    </c:forEach>
                 </tbody>
             </table>
         </section>

@@ -13,7 +13,15 @@
     <main class="index">
         <section>
             <h2>Administra tus finanzas de manera fácil y eficiente</h2>
-            <a href="jsp/verdashboard.jsp">Ver Dashboard</a>
+            <form  method="POST" action="./ContabilidadController?ruta=verDashboard">
+                <label for="inicio">Fecha de Inicio:</label>
+                <input type="date" name="inicio" id="inicio">
+                
+                <label for="fin">Fecha de Fin:</label>
+                <input type="date" name="fin" id="fin">
+                
+                <input type="submit" value="Ver Dashboard"> 
+            </form>
         </section>
     </main>
     <footer>
