@@ -53,11 +53,7 @@ public class Ingreso implements Serializable {
 
     /*************** MÉTODOS DEL NEGOCIO ***************/
 
-    /**
-     * Método para agregar un ingreso.
-     * Aquí se podría incluir la lógica específica para el negocio relacionada con el ingreso.
-     * @param monto Monto a agregar.
-     */
+   
     public void agregarIngreso(Double monto) {
         this.monto += monto;
     }
