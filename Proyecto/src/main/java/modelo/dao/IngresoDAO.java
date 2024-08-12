@@ -1,9 +1,10 @@
 package modelo.dao;
-
-public class IngresoDAO {
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+
+public class IngresoDAO {
+
 
 import modelo.entidades.Ingreso;
 
