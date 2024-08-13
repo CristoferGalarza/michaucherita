@@ -8,11 +8,11 @@ public class Ingreso implements Serializable {
     private String concepto;
     private Date fecha;
     private Double monto;
-    private Categoria categoria;
+    private CategoriaIngreso categoria;
 
     public Ingreso() {}
 
-    public Ingreso(String concepto, Date fecha, Double monto, Categoria categoria) {
+    public Ingreso(String concepto, Date fecha, CategoriaIngreso categoria, Double monto) {
         this.concepto = concepto;
         this.fecha = fecha;
         this.monto = monto;
@@ -43,11 +43,11 @@ public class Ingreso implements Serializable {
         this.monto = monto;
     }
 
-    public Categoria getCategoria() {
+    public CategoriaIngreso getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(Categoria categoria) {
+    public void setCategoria(CategoriaIngreso categoria) {
         this.categoria = categoria;
     }
 

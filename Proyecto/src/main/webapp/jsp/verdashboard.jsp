@@ -30,7 +30,7 @@
                     <c:forEach var="cuenta" items="${cuentas}">
                         <tr>
                             <td>${cuenta.nombre}</td>
-                            <td>${cuenta.saldoTotal}</td>
+                            <td>${cuenta.total}</td>
                             <td>
                                 <a href="../ContabilidadController?ruta=verCuenta&cuentaId=${cuenta.id}&inicio=${inicio}&fin=${fin}">Ver Cuenta</a>      
                             </td>
@@ -67,6 +67,11 @@
                 </tbody>
             </table>
         </section>
+        
+        <section>
+    		<a href="../index.html" class="button">Volver al inicio</a>
+		</section>
+        
     </main>
     <footer>
         <p>&copy; 2024 Gestor de Gastos. Todos los derechos reservados.</p>

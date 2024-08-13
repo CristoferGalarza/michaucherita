@@ -17,18 +17,17 @@
     <main>
         <section>
             <h4>Datos del Movimiento</h4>
-            <form method="POST" action="ContabilidadController">
+            <form method="POST" action="../ContabilidadController?ruta=registrarIngreso">
                 <!-- Campo oculto para el ID de la cuenta -->
-                <input type="hidden" id="cuentaId" name="cuentaId" value="<!-- ID de la cuenta seleccionada -->">
-                
+                <input type="hidden" id="cuentaId" name="cuentaId" value="${param.cuentaId}">
                 <label for="concepto">Concepto:</label>
                 <input type="text" id="concepto" name="concepto" placeholder="Ej. Pago de nómina" required>
 
                 <label for="fecha">Fecha:</label>
                 <input type="date" id="fecha" name="fecha" required>
 
-                <label for="categoria">Categoría:</label>
-                <select id="categoria" name="categoria" required>
+                <label for="categoriaNombre">Categoría:</label>
+                <select id="categoriaNombre" name="categoriaNombre" required>
                     <option value="">Selecciona una categoría</option>
                     <!-- Aquí se pueden agregar opciones dinámicamente -->
                     <option value="salario">Salario Mensual</option>
@@ -44,10 +43,6 @@
             </form>
         </section>
         
-        <br>
-        <section>
-            <a href="verdashboard.jsp" class="button">Volver al dashboard</a>
-        </section>
     </main>
     <footer>
         <p>&copy; 2024 Gestor de Gastos. Todos los derechos reservados.</p>

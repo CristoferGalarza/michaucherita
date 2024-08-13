@@ -53,10 +53,8 @@
 
        <section>
 		    <h4>Acciones</h4>
-		    <a href="registraringreso.jsp" class="button">Registrar Ingreso</a>
-		    <a href="ContabilidadController?ruta=verMovimientos&cuentaId=${cuenta.id}&inicio=${inicio}&fin=${fin}">Ver Movimientos</a>
-		    <a href="verdashboard.jsp" class="button">Volver al dashboard</a>
-		    <!-- Aquí se pueden agregar más enlaces para otras acciones si es necesario -->
+		    <a href="../ContabilidadController?ruta=nuevoRegistro&cuentaId=${cuenta.id}">Registrar Ingreso</a>
+		    <a href="../ContabilidadController?ruta=verDashboard&inicio=${inicio}&fin=${fin}">Volver al dashboard</a>
 		</section>
        
     </main>

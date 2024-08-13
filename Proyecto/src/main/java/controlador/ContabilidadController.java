@@ -2,18 +2,20 @@ package controlador;
 
 import modelo.entidades.Cuenta;
 import modelo.entidades.Movimiento;
+import modelo.entidades.Categoria;
+import modelo.entidades.CategoriaIngreso;
 import modelo.dao.CuentaDAO;
 import modelo.dao.MovimientoDAO;
+import modelo.dao.IngresoDAO;
+import modelo.dao.CategoriaDAO;
+import modelo.dao.CategoriaIngresoDAO;
 
 import java.io.IOException;
-<<<<<<< Updated upstream
-import modelo.entidades.Cuenta;
-=======
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
->>>>>>> Stashed changes
+
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -49,8 +51,8 @@ public class ContabilidadController extends HttpServlet {
 			break;
 		}
 		
-		case "verMovimientos":{
-			this.verMovimientos(req, resp);
+		case "nuevoRegistro":{
+			this.nuevoRegistro(req, resp);
 			break;
 		}
 		
@@ -67,18 +69,36 @@ public class ContabilidadController extends HttpServlet {
 		}
 	}
 	
-<<<<<<< Updated upstream
-	private void verDasboard(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		//1. Obtener los parámetros
-		//2. Hablar con el modelo
-		//3. LLamar a la vista
-		
-=======
+	private void nuevoRegistro(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// 1. Obtener los parámetros
+	    String cuentaId = req.getParameter("cuentaId");
+	    
+	    // 2. Hablar con el modelo
+	    
+	    // 3. Llamar a la vista
+	    req.setAttribute("cuentaId", cuentaId);
+	    req.getRequestDispatcher("jsp/registrarIngreso.jsp").forward(req, resp);
+	}
+
+
 	private void verDashboard(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		 // 1. Obtener los parámetros
 	    Date inicio = parseDate(req.getParameter("inicio"));
 	    Date fin = parseDate(req.getParameter("fin"));
+	    
+	    // Si el usuario no proporciona fechas, se utilizan las fechas por defecto
+	    if (inicio == null || fin == null) {
+	        // Obtener la fecha actual
+	        long currentTimeMillis = System.currentTimeMillis();
+	        Date currentDate = new Date(currentTimeMillis);
+
+	        // Establecer la fecha de inicio al primer día del mes actual
+	        String currentMonthStart = currentDate.toString().substring(0, 8) + "01"; // Formato yyyy-MM-01
+	        inicio = Date.valueOf(currentMonthStart);
+
+	        // Establecer la fecha de fin al día actual
+	        fin = currentDate;
+	    }
 
 	    // 2. Hablar con el modelo
 	    List<Cuenta> cuentas = CuentaDAO.getAll(); // Obtener todas las cuentas
@@ -92,8 +112,44 @@ public class ContabilidadController extends HttpServlet {
 	    req.getRequestDispatcher("jsp/verdashboard.jsp").forward(req, resp); 
 	}
 
+	private void registrarIngreso(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	    // 1. Obtener los parámetros
+	    int cuentaId = Integer.parseInt(req.getParameter("cuentaId"));
+	    String concepto = req.getParameter("concepto");
+	    Date fecha = parseDate(req.getParameter("fecha"));
+	    String categoriaNombre = req.getParameter("categoria");
+	    double monto = Double.parseDouble(req.getParameter("monto"));
+
+	    // 2. Hablar con el modelo
+	    CategoriaIngreso categoria = CategoriaIngresoDAO.getCategoriaByName(categoriaNombre); // Obtener la categoría 
+	    IngresoDAO.agregarIngreso(cuentaId, concepto, fecha, categoria, monto);
+	    CuentaDAO.actualizarTotal(cuentaId, monto);
+
+	    //3. LLamar a la vista
+	    resp.sendRedirect("ContabilidadController?ruta=verCuenta&cuentaId=" + cuentaId);
+	}
+
+	
+	private void verCuenta(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	    // 1. Obtener los parámetros
+	    int cuentaId = Integer.parseInt(req.getParameter("cuentaId"));
+	    Date inicio = parseDate(req.getParameter("inicio"));
+	    Date fin = parseDate(req.getParameter("fin"));
+	    
+	    // 2. Hablar con el modelo 
+	    Cuenta cuenta = CuentaDAO.getCuenta(cuentaId); // Obtener la cuenta
+	    List<Movimiento> movimientos = MovimientoDAO.getMovimientosCuenta(cuentaId, inicio, fin); //obtener lo movs de la cuenta
+	    
+	    //3. LLamar a la vista
+	    req.setAttribute("cuenta", cuenta); // Pasar la cuenta a la vista
+	    req.setAttribute("movimientos", movimientos); // Pasar los movimientos a la vista
+	    req.setAttribute("inicio", inicio); 
+	    req.setAttribute("fin", fin);
+	    req.getRequestDispatcher("jsp/vercuenta.jsp").forward(req, resp);
+	}
+	
 	private Date parseDate(String dateStr) {
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 	    try {
 	        java.util.Date utilDate = formatter.parse(dateStr); // Parse to java.util.Date
 	        return new java.sql.Date(utilDate.getTime()); // Convert to java.sql.Date
@@ -101,45 +157,9 @@ public class ContabilidadController extends HttpServlet {
 	        e.printStackTrace();
 	        return null;
 	    }
->>>>>>> Stashed changes
-	}
-	
-	private void verMovimientos(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// 1. Obtener los parámetros
-	    //int cuentaId = Integer.parseInt(req.getParameter("cuentaId"));
-	    //Date inicio = Date.valueOf(req.getParameter("inicio")); 
-	    //Date fin = Date.valueOf(req.getParameter("fin")); 
 
-	    // 2. Hablar con el modelo
-	    //List<Movimiento> movimientos = MovimientoDAO.getMovimientosCuenta(cuentaId, inicio, fin);
-
-	    // 3. Llamar a la vista
-	    //req.setAttribute("movimientos", movimientos);
-	    //req.getRequestDispatcher("jsp/vermovimientos.jsp").forward(req, resp);
-		
 	}
 	
-	private void registrarIngreso(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//1. Obtener los parámetros
-		//2. Hablar con el modelo
-		//3. LLamar a la vista
-	 
-	}
-	
-	
-	private void verCuenta(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	    // 1. Obtener los parámetros
-	    int cuentaId = Integer.parseInt(req.getParameter("cuentaId"));
-	    
-	    // 2. Hablar con el modelo 
-	    //Cuenta cuenta = CuentaDAO.getCuenta(cuentaId); // Obtener la cuenta
-	    //List<Movimiento> movimientos = MovimientoDAO.getMovimientosCuenta(cuentaId); //obtener lo movs de la cuenta
-	    
-	    //3. LLamar a la vista
-	    //req.setAttribute("cuenta", cuenta); // Pasar la cuenta a la vista
-	    //req.setAttribute("movimientos", movimientos); // Pasar los movimientos a la vista
-	    //req.getRequestDispatcher("jsp/vercuenta.jsp").forward(req, resp);
-	}
 
 	
 	

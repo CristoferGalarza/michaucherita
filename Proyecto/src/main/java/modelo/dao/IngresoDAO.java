@@ -3,15 +3,13 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IngresoDAO {
-
-
+import modelo.entidades.CategoriaIngreso;
 import modelo.entidades.Ingreso;
 
 public class IngresoDAO {
     private static List<Ingreso> ingresos;
 
-    public static boolean agregarIngreso(int cuentaId, String concepto, Date fecha, String categoria, double monto) {
+    public static boolean agregarIngreso(int cuentaId, String concepto, Date fecha, CategoriaIngreso categoria, double monto) {
         if (ingresos == null) {
             ingresos = new ArrayList<>();
         }
@@ -20,7 +18,7 @@ public class IngresoDAO {
             return false; // Validación básica
         }
 
-        Ingreso ingreso = new Ingreso(concepto, fecha, monto, categoria);
+        Ingreso ingreso = new Ingreso(concepto, fecha, categoria, monto);
         ingresos.add(ingreso);
 
         // Actualizar el total de la cuenta
