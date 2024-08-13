@@ -1,20 +1,11 @@
 package modelo.entidades;
 
-public class CategoriaIngreso {
-	
-public static CategoriaIngreso getCategoriaByName(String categoriaNombre) {
-		
-		
-		
-		return null;
-	}
+import java.io.Serializable;
 
-public boolean isEmpty() {
-	// TODO Auto-generated method stub
-	return false;
-}
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
-
-
+@Entity
+public class CategoriaIngreso extends Categoria implements Serializable{
 
 }

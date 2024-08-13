@@ -12,6 +12,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "Movimiento")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Movimiento implements Serializable{
 	//Los movimientos se van aumentar cuando realicemos ingresos
 	
@@ -50,8 +51,6 @@ public class Movimiento implements Serializable{
 		this.valor = valor;
 		this.hora = hora;
 	}
-
-
 
 	//Getter ans setter
 	public int getId() {

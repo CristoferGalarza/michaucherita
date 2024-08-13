@@ -27,11 +27,11 @@ public class CuentaDAO {
 	
 
 	public double actualizarTotal(int cuentaId, double monto) {
-		
+		return 0;
 	}
 	
 	public Cuenta getCuenta(int cuentaId) {
-		
+		return null;
 	}
 }
 

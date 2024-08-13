@@ -2,61 +2,52 @@ package modelo.entidades;
 import java.io.Serializable;
 import java.sql.Date;
 
-public class Ingreso implements Serializable {
-    private static final long serialVersionUID = 1L;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
-    private String concepto;
-    private Date fecha;
-    private Double monto;
+@Entity
+public class Ingreso extends Movimiento implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
+    @ManyToOne
+    @JoinColumn(name = "destino")
+    private Cuenta destino;
+    @ManyToOne
+    @JoinColumn(name = "categoria")
     private CategoriaIngreso categoria;
+    
 
     public Ingreso() {}
 
-    public Ingreso(String concepto, Date fecha, CategoriaIngreso categoria, Double monto) {
-        this.concepto = concepto;
-        this.fecha = fecha;
-        this.monto = monto;
-        this.categoria = categoria;
-    }
 
-    public String getConcepto() {
-        return concepto;
-    }
+	public Cuenta getDestino() {
+		return destino;
+	}
 
-    public void setConcepto(String concepto) {
-        this.concepto = concepto;
-    }
 
-    public Date getFecha() {
-        return fecha;
-    }
+	public void setDestino(Cuenta destino) {
+		this.destino = destino;
+	}
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
 
-    public Double getMonto() {
-        return monto;
-    }
+	public CategoriaIngreso getCategoria() {
+		return categoria;
+	}
 
-    public void setMonto(Double monto) {
-        this.monto = monto;
-    }
 
-    public CategoriaIngreso getCategoria() {
-        return categoria;
-    }
+	public void setCategoria(CategoriaIngreso categoria) {
+		this.categoria = categoria;
+	}
 
-    public void setCategoria(CategoriaIngreso categoria) {
-        this.categoria = categoria;
-    }
 
-    /*************** MÉTODOS DEL NEGOCIO ***************/
+	@Override
+	public String toString() {
+		return "Ingreso [destino=" + destino + ", categoria=" + categoria + "]";
+	}
 
-   
-    public void agregarIngreso(Double monto) {
-        this.monto += monto;
-    }
+      
 }
 
 

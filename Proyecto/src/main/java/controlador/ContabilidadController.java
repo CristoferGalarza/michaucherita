@@ -43,7 +43,7 @@ public class ContabilidadController extends HttpServlet {
 	//RUTEADOR
 	
 	private void ruteador(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-		String ruta = (req.getParameter("ruta")!=null)? "verDashboard": req.getParameter("ruta");
+		String ruta = (req.getParameter("ruta")==null)? "verDashboard": req.getParameter("ruta");
 		
 		switch(ruta) {
 		case "verDashboard":{
@@ -77,11 +77,13 @@ public class ContabilidadController extends HttpServlet {
 	    
 	    // 3. Llamar a la vista
 	    req.setAttribute("cuentaId", cuentaId);
-	    req.getRequestDispatcher("jsp/registrarIngreso.jsp").forward(req, resp);
+	    req.getRequestDispatcher("jsp/registraringreso.jsp").forward(req, resp);
 	}
 
 
 	private void verDashboard(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		
 		 // 1. Obtener los parámetros
 	    Date inicio = parseDate(req.getParameter("inicio"));
 	    Date fin = parseDate(req.getParameter("fin"));
@@ -101,12 +103,13 @@ public class ContabilidadController extends HttpServlet {
 	    }
 
 	    // 2. Hablar con el modelo
-	    List<Cuenta> cuentas = CuentaDAO.getAll(); // Obtener todas las cuentas
-	    List<Movimiento> movimientos = MovimientoDAO.getAllSumarized(inicio, fin); // Obtener los movimientos en el rango de fechas
+	    CuentaDAO cuentadao = new CuentaDAO();
+	    List<Cuenta> cuentas = cuentadao.getAll(); // Obtener todas las cuentas
+	    //List<Movimiento> movimientos = MovimientoDAO.getAllSumarized(inicio, fin); // Obtener los movimientos en el rango de fechas
 
 	    // 3. Llamar a la vista
 	    req.setAttribute("cuentas", cuentas);
-	    req.setAttribute("movimientos", movimientos);
+	    //req.setAttribute("movimientos", movimientos);
 	    req.setAttribute("inicio", inicio); 
 	    req.setAttribute("fin", fin);
 	    req.getRequestDispatcher("jsp/verdashboard.jsp").forward(req, resp); 

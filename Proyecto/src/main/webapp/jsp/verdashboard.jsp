@@ -32,7 +32,8 @@
                             <td>${cuenta.nombre}</td>
                             <td>${cuenta.total}</td>
                             <td>
-                                <a href="../ContabilidadController?ruta=verCuenta&cuentaId=${cuenta.id}&inicio=${inicio}&fin=${fin}">Ver Cuenta</a>      
+                                <a href="ContabilidadController?ruta=verCuenta&cuentaId=${cuenta.id}&inicio=${inicio}&fin=${fin}">Ver Cuenta</a>|  
+                                <a href="ContabilidadController?ruta=nuevoRegistro&cuentaId=${cuenta.id}">Crear Ingreso</a>       
                             </td>
                         </tr>
                     </c:forEach>
@@ -41,10 +42,12 @@
         </section>
 
         <section>
+        <!----
             <h4>Lista de Movimientos</h4>
             <table>
                 <thead>
                     <tr>
+                    	<th>id</th>
                         <th>Fecha</th>
                         <th>Concepto</th>
                         <th>Cuenta Origen</th>
@@ -65,13 +68,8 @@
                         </tr>
                     </c:forEach>
                 </tbody>
-            </table>
+            </table>---->
         </section>
-        
-        <section>
-    		<a href="../index.html" class="button">Volver al inicio</a>
-		</section>
-        
     </main>
     <footer>
         <p>&copy; 2024 Gestor de Gastos. Todos los derechos reservados.</p>
