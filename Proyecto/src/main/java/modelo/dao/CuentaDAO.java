@@ -27,11 +27,34 @@ public class CuentaDAO {
 	
 
 	public double actualizarTotal(int cuentaId, double monto) {
-		return 0;
+	    double nuevoTotal = -1; // Inicializar a -1 para indicar error si algo sale mal
+	    this.em.getTransaction().begin();
+	    try {
+	        Cuenta cuenta = this.em.find(Cuenta.class, cuentaId);
+	        if (cuenta != null) {
+	            cuenta.setTotal(cuenta.getTotal() + monto);
+	            this.em.merge(cuenta);
+	            this.em.getTransaction().commit();
+	            nuevoTotal = cuenta.getTotal();
+	        } else {
+	            // Si la cuenta no existe, no realizamos el commit
+	            System.out.println("Cuenta no encontrada con ID: " + cuentaId);
+	            this.em.getTransaction().rollback();
+	        }
+	    } catch (Exception e) {
+	        System.out.println(">>>>>>>>>> ERROR: Actualizar total - " + e.getMessage());
+	        
+	        if (this.em.getTransaction().isActive()) {
+	            this.em.getTransaction().rollback();
+	        } 
+	        nuevoTotal = -1; // Asegurar que se devuelve un valor indicativo de error
+	    }
+	    
+	    return nuevoTotal;
 	}
 	
 	public Cuenta getCuenta(int cuentaId) {
-		return null;
+		return this.em.find(Cuenta.class, cuentaId);
 	}
 }
 
